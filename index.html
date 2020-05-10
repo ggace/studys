@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <style media="screen">
+      h2{
+        color: red;
+        text-align: center;
+      }
+      #list{
+        margin: 50px;
+        border: 1px solid black;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <h2>교육부 소식</h2>
+
+    <div id="list">
+      <ol id="ul">
+
+      </ol>
+    </div>
+
+    <script type="text/javascript">
+
+    const url = "http://127.0.0.1:5000/";
+
+
+    fetch(url)
+    .then(res => res.json())
+    .then(myJson => {
+      const stores = myJson.store;
+
+
+
+      console.log(stores);
+
+      for(var i = 0; i < stores.length; i++){
+        var para = document.createElement("li");
+        var node = document.createTextNode(stores[i]['title']);
+        para.appendChild(node);
+        var element = document.getElementById("ul");
+        element.appendChild(para);
+      }
+
+    })
+
+    </script>
+
+  </body>
+</html>
